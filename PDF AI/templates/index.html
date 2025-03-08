@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF AI 問答</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>上傳 PDF 並提問</h1>
+    <form method="post">
+        <input type="text" name="question" placeholder="請輸入您的問題" required>
+        <button type="submit">提交</button>
+    </form>
+    {% if answer %}
+        <h2>回答：</h2>
+        <p>{{ answer }}</p>
+        {% if from_ppt %}
+            <p style="color: green;">這個回答是根據 PDF 內容生成的。</p>
+        {% else %}
+            <p style="color: red;">這個回答不是根據 PDF 內容生成的，而是模型生成的。</p>
+        {% endif %}
+    {% else %}
+        <h2>回答：</h2>
+        <p>請輸入問題以獲取回答。</p>
+    {% endif %}
+</body>
+</html>
